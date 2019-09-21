@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 
 import sys
-import argparse
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from lorawan_a2b_hex import a2b_hex
 from lorawan_parser import parse_phy_pdu
 from lorawan_cipher import lorawan_get_keys
 
-ap = argparse.ArgumentParser(description="""
-                             LoRaWAN PHY frame parser.
-                             The input must be hex strings.
-                             You can use stdin to pass the string.
-                             """)
+ap = ArgumentParser(
+        description="""
+        LoRaWAN PHY Payload parser.
+        The input must be hex strings.
+        You can use stdin to pass the string.
+        """,
+        formatter_class=ArgumentDefaultsHelpFormatter)
 ap.add_argument("phy_pdu", metavar="PHY_PDU_HEXSTR", type=str, nargs='*',
                 help="a series or multiple of hex string.")
 # required to decode Join-Accept.
