@@ -3,11 +3,15 @@ LoRaWAN PHY Payload Parser
 
 This is a parser tool of the LoRaWAN PHY payload.
 
+DON'T USE [lorawan_phy_parser](https://github.com/tanupoo/lorawan_phy_parser),
+which is not maintained anymore.
+
 ## Features
 
 - supporting v1.0, v1.0.3, v1.1.
 - decoding encrypted message, v1.0, v1.0.3 only. (v1.1 not yet)
 - calculating NwkSKey, AppSKey from the join messages with AppKey.
+- calculating MIC based on the wire message so that you can check the integrity.
 
 ## Requirement
 
