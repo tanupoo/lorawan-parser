@@ -180,7 +180,7 @@ If you use the -v option for the message containing MAC Commands,
 you can see a short description of each command like below:
 
 ```
-./lorawan-parser.py -v \
+% lorawan-parser.py -v \
     --nwkskey=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABB \
     --appskey=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABB \
     40,B2,00,EF,BE,9A,03,00,03,07,05,07,07,03,07,03,10,04,02,09,AA,50,B1,F0,79,2F,31,AD,9C,63,78,5F,83,8D,95,C6,FE,81,D2,97,09,BA,3C,6E,19,B7,71,43,7C,  -v
