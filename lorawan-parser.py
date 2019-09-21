@@ -16,7 +16,7 @@ ap.add_argument("phy_pdu", metavar="PHY_PDU_HEXSTR", type=str, nargs='*',
 ap.add_argument("--lorawan-version", action="store", dest="version",
                 default="1.0.3",
                 # 1.0, 1.0.3, 1.1
-                help="specify the version of LoRaWAN; 0 as v1.0.x, 1 as v1.1.x.")
+                help="specify the version of LoRaWAN; 1.0, 1.0.3, or 1.1")
 # required to decode Join-Accept.
 ap.add_argument("--appkey", "--AppKey", action="store", dest="appkey",
                 help="specify AppKey.")
