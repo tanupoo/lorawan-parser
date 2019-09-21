@@ -27,32 +27,36 @@ usage: lorawan-parser.py [-h] [--appkey APPKEY] [--join-request JOIN_R]
                          [-v] [-d]
                          [PHY_PDU_HEXSTR [PHY_PDU_HEXSTR ...]]
 
-LoRaWAN PHY frame parser. The input must be hex strings. You can use stdin to
-pass the string.
+LoRaWAN PHY Payload parser. The input must be hex strings. You can use stdin
+to pass the string.
 
 positional arguments:
-  PHY_PDU_HEXSTR        a series or multiple of hex string.
+  PHY_PDU_HEXSTR        a series or multiple of hex string. (default: None)
 
 optional arguments:
   -h, --help            show this help message and exit
   --appkey APPKEY, --AppKey APPKEY
-                        specify AppKey.
+                        specify AppKey. (default: None)
   --join-request JOIN_R
-                        specify the hex string of the Join Request.
+                        specify the hex string of the Join Request. (default:
+                        None)
   --join-accept JOIN_A  specify the hex string of the Join Accept/Response.
+                        (default: None)
   --nwkskey NWKSKEY, --NwkSKey NWKSKEY
-                        specify NwkSKey(v1.0.x).
+                        specify NwkSKey(v1.0.x). (default: None)
   --appskey APPSKEY, --AppSKey APPSKEY
-                        specify AppSKey.
+                        specify AppSKey. (default: None)
   --from-file FROM_FILE
                         specify a file or stdin to read the messages.
+                        (default: None)
   --upper-fcnt UPPER_FCNT
                         specify the most significant 16-bit of the FCnt in
-                        hex.
+                        hex. (default: 0000)
   --lorawan-version VERSION
                         specify the version of LoRaWAN; 1.0, 1.0.3, or 1.1
-  -v                    enable verbose mode.
-  -d                    increase debug mode.
+                        (default: 1.0.3)
+  -v                    enable verbose mode. (default: False)
+  -d                    increase debug mode. (default: [])
 ```
 
 ## How to pass the hex string of the data
