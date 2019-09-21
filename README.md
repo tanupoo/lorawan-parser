@@ -3,8 +3,7 @@ LoRaWAN PHY Payload Parser
 
 This is a parser tool of the LoRaWAN PHY payload.
 
-DON'T USE [lorawan_phy_parser](https://github.com/tanupoo/lorawan_phy_parser),
-which is not maintained anymore.
+Please use lorawan-parser (this software) instead of [lorawan_phy_parser](https://github.com/tanupoo/lorawan_phy_parser), which is not maintained anymore.
 
 ## Features
 
