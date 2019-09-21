@@ -20,10 +20,10 @@ Please use lorawan-parser (this software) instead of [lorawan_phy_parser](https:
 ## Usage
 
 ```
-usage: lorawan-parser.py [-h] [--lorawan-version VERSION] [--appkey APPKEY]
-                         [--join-request JOIN_R] [--join-accept JOIN_A]
-                         [--nwkskey NWKSKEY] [--appskey APPSKEY]
-                         [--upper-fcnt UPPER_FCNT] [--from-file FROM_FILE]
+usage: lorawan-parser.py [-h] [--appkey APPKEY] [--join-request JOIN_R]
+                         [--join-accept JOIN_A] [--nwkskey NWKSKEY]
+                         [--appskey APPSKEY] [--from-file FROM_FILE]
+                         [--upper-fcnt UPPER_FCNT] [--lorawan-version VERSION]
                          [-v] [-d]
                          [PHY_PDU_HEXSTR [PHY_PDU_HEXSTR ...]]
 
@@ -35,20 +35,22 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --lorawan-version VERSION
-                        specify the version of LoRaWAN; 0 as v1.0.x, 1 as
-                        v1.1.x.
-  --appkey APPKEY       specify AppKey.
+  --appkey APPKEY, --AppKey APPKEY
+                        specify AppKey.
   --join-request JOIN_R
                         specify the hex string of the Join Request.
   --join-accept JOIN_A  specify the hex string of the Join Accept/Response.
-  --nwkskey NWKSKEY     specify NwkSKey(v1.0.x).
-  --appskey APPSKEY     specify AppSKey.
+  --nwkskey NWKSKEY, --NwkSKey NWKSKEY
+                        specify NwkSKey(v1.0.x).
+  --appskey APPSKEY, --AppSKey APPSKEY
+                        specify AppSKey.
+  --from-file FROM_FILE
+                        specify a file or stdin to read the messages.
   --upper-fcnt UPPER_FCNT
                         specify the most significant 16-bit of the FCnt in
                         hex.
-  --from-file FROM_FILE
-                        specify a file or stdin to read the messages.
+  --lorawan-version VERSION
+                        specify the version of LoRaWAN; 1.0, 1.0.3, or 1.1
   -v                    enable verbose mode.
   -d                    increase debug mode.
 ```

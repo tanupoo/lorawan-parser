@@ -13,10 +13,6 @@ ap = argparse.ArgumentParser(description="""
                              """)
 ap.add_argument("phy_pdu", metavar="PHY_PDU_HEXSTR", type=str, nargs='*',
                 help="a series or multiple of hex string.")
-ap.add_argument("--lorawan-version", action="store", dest="version",
-                default="1.0.3",
-                # 1.0, 1.0.3, 1.1
-                help="specify the version of LoRaWAN; 1.0, 1.0.3, or 1.1")
 # required to decode Join-Accept.
 ap.add_argument("--appkey", "--AppKey", action="store", dest="appkey",
                 help="specify AppKey.")
@@ -31,11 +27,16 @@ ap.add_argument("--nwkskey", "--NwkSKey", action="store", dest="nwkskey",
 ap.add_argument("--appskey", "--AppSKey", action="store", dest="appskey",
                 help="specify AppSKey.")
 #
+ap.add_argument("--from-file", action="store", dest="from_file",
+                help="specify a file or stdin to read the messages.")
+#
 ap.add_argument("--upper-fcnt", action="store", dest="upper_fcnt",
                 default="0000",
                 help="specify the most significant 16-bit of the FCnt in hex.")
-ap.add_argument("--from-file", action="store", dest="from_file",
-                help="specify a file or stdin to read the messages.")
+ap.add_argument("--lorawan-version", action="store", dest="version",
+                default="1.0.3",
+                # 1.0, 1.0.3, 1.1
+                help="specify the version of LoRaWAN; 1.0, 1.0.3, or 1.1")
 #ap.add_argument("-b", action="store", dest="beacon_rfu", default=2,
 #                help="specify the number of bytes of the RFU in the beacon.")
 #
