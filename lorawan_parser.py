@@ -91,10 +91,6 @@ def print_detail(text):
     """
     if not opt.verbose:
         return
-    #
-    #indent = "        "
-    #print(indent, end="")
-    #print("** Detail: {}".format(re.sub("\s+", " ", text)))
     indent = 10
     bullet = "* DETAIL:"
     bullet_len = 1 + len(bullet)
@@ -130,7 +126,7 @@ def print_v(tag, v_host=None, v_wire=None, indent=1, debug=False):
     if __parse_only is True:
         return
     if debug and opt.debug_level == 0:
-        # ignore when no debug mode.
+        # ignore print_d() when the -d option is not specified.
         return
     print("{}".format("  "*indent), end="")
     if debug:
@@ -1101,7 +1097,7 @@ def parse_mac_payload(phy_pdu, mhdr_o, nwkskey=None, appskey=None,
     elif mhdr_o["mtype"] in [ "001", "011", "101" ]:
         msg_dir = MSGDIR_DOWN
     else:
-        print_d("unknown msg direction", debug=True)
+        print_w("unknown msg direction")
         return { "msg_dir": MSGDIR_UNKNOWN }
     """
 ## FOptsLen, FOpts, FPort, FRMPayload
