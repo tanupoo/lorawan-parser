@@ -42,6 +42,10 @@ ap.add_argument("--lorawan-version", action="store", dest="version",
 #ap.add_argument("-b", action="store", dest="beacon_rfu", default=2,
 #                help="specify the number of bytes of the RFU in the beacon.")
 #
+ap.add_argument("--string-type", action="store", dest="string_type",
+                default="hexstr",
+                help="""specify the type of string of phy_pdu,
+                either hexstr or base64.""")
 ap.add_argument("-v", action="store_true", dest="verbose",
                 help="enable verbose mode.")
 ap.add_argument("-d", action="append_const", dest="_f_debug", default=[],
@@ -56,11 +60,13 @@ appkey = a2b_hex(opt.appkey)
 # override the keys if the messages and appkey are specified.
 if opt.join_r is not None and opt.join_a is not None:
     if appkey is not None:
-        msg_join_r = parse_phy_pdu(a2b_hex(opt.join_r),
+        msg_join_r = parse_phy_pdu(a2b_hex(opt.join_r,
+                                           string_type=opt.string_type),
                                    appkey=appkey, option=opt,
                                    parse_only=(False if opt.debug_level > 1 else
                                                True))
-        msg_join_a = parse_phy_pdu(a2b_hex(opt.join_a),
+        msg_join_a = parse_phy_pdu(a2b_hex(opt.join_a,
+                                           string_type=opt.string_type),
                                    appkey=appkey, option=opt,
                                    parse_only=(False if opt.debug_level > 1 else
                                                True))
@@ -84,7 +90,7 @@ if opt.from_file:
     else:
         fd = open(opt.from_file)
     for line in fd:
-        parse_phy_pdu(a2b_hex(line),
+        parse_phy_pdu(a2b_hex(line, string_type=opt.string_type),
                       nwkskey=nwkskey, appskey=appskey, appkey=appkey,
                       version=opt.version, upper_fcnt=a2b_hex(opt.upper_fcnt),
                       option=opt)
@@ -92,7 +98,7 @@ else:
     if len(opt.phy_pdu) == 0:
         ap.print_help()
         exit(0)
-    parse_phy_pdu(a2b_hex(opt.phy_pdu),
+    parse_phy_pdu(a2b_hex(opt.phy_pdu, string_type=opt.string_type),
                   nwkskey=nwkskey, appskey=appskey, appkey=appkey,
                   version=opt.version, upper_fcnt=a2b_hex(opt.upper_fcnt),
                   option=opt)
