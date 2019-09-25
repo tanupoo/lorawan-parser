@@ -501,10 +501,10 @@ device may have to store more than 16 channel definitions.
     #
     DrRange_x = mac_cmd[4:5]
     DrRange_b = x2bin(DrRange_x)
-    MaxDR_b = b_DrRange[0:4]
+    MaxDR_b = DrRange_b[0:4]
     MaxDR_i = x2int(MaxDR_b)
-    MinDR_b = b_DrRange[4:8]
-    MinDR_i = x2int(MnDR_b)
+    MinDR_b = DrRange_b[4:8]
+    MinDR_i = x2int(MinDR_b)
     print_v("DrRange", formx(DrRange_x), formx(DrRange_b,"bin"), indent=3)
     print_v("MaxDR", MaxDR_i, formx(MaxDR_b,"bin"), indent=4)
     print_v("MinDR", MinDR_i, formx(MinDR_b,"bin"), indent=4)
