@@ -1337,6 +1337,9 @@ def parse_join_accept(phy_pdu, appkey=None, version="1.0.3", region="AS923"):
         print_d("Data length", "{}".format(len(payload)))
         payload = lorawan_aes128_encrypt(appkey, payload)
         print_d("Decrypted", formx(payload))
+    else:
+        print_w("not decrypt Join Accept due to no AppKey specified.")
+        return {}
     #
     appnonce_x = payload[0:3][::-1]
     netid_x = payload[3:6][::-1]
@@ -1505,7 +1508,7 @@ def parse_phy_pdu(phy_pdu, nwkskey=None, appskey=None, appkey=None,
         if "mic_explicit" in msg_o:
             mic_x = msg_o["mic_explicit"]
         else:
-            mic_x = "Unknown"
+            mic_x = None
     elif mhdr_o["mtype"] in [ "011", "101", "010", "100" ]:
         print_vt("MACPayload", formx(payload))
         msg_o = parse_mac_payload(phy_pdu, mhdr_o,
@@ -1520,10 +1523,14 @@ def parse_phy_pdu(phy_pdu, nwkskey=None, appskey=None, appkey=None,
     ret_o = {
             "mhdr": mhdr_o,
             "body": msg_o,
-            "mic": mic_x
             }
     print_vt("MIC")
-    print_v("MIC in frame", formx(mic_x), formx(mic_x[::-1]))
+    if mic_x is not None:
+        print_v("MIC in frame", formx(mic_x), formx(mic_x[::-1]))
+        ret_o.update({"mic": mic_x})
+    else:
+        # this is only case when the join response hasn't been decoded.
+        pass
     if "mic_derived" in msg_o:
         print_v("MIC Derived ", formx(msg_o["mic_derived"]))
     #
