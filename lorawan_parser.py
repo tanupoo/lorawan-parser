@@ -990,7 +990,7 @@ def parse_mac_cmd(mac_cmds, msg_dir, version):
 def parse_fhdr(payload, msg_dir, version, upper_fcnt=b"\x00\x00"):
     """
     FHDR Parser.
-    - payload: mac payload in bytes.
+    - payload: mac payload (MHDR is not included) in bytes.
     - FHDR format is:
            4    |   1   |   2  | 0...15
         DevAddr | FCtrl | FCnt | FOpts
@@ -1169,6 +1169,10 @@ encrypted and must not exceed the maximum FRMPayload length.
     #
     offset = fhdr_o["fhdr_size"]
     rest_size = len(payload) - offset
+    if rest_size < 0:
+        print_w("invalid fhdr_size={}, rest_size={}".format(fhdr_o["fhdr_size"],
+                                                            rest_size))
+        return ret_o
     if rest_size == 0:
         # case 3
         return ret_o
