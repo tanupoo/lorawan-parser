@@ -22,9 +22,9 @@ Please use lorawan-parser (this software) instead of [lorawan_phy_parser](https:
 ```
 usage: lorawan-parser.py [-h] [--appkey APPKEY] [--join-request JOIN_R]
                          [--join-accept JOIN_A] [--nwkskey NWKSKEY]
-                         [--appskey APPSKEY] [--from-file FROM_FILE]
+                         [--appskey APPSKEY] [--input-file INPUT_FILE]
                          [--upper-fcnt UPPER_FCNT] [--lorawan-version VERSION]
-                         [-v] [-d]
+                         [--string-type STRING_TYPE] [-v] [-d]
                          [PHY_PDU_HEXSTR [PHY_PDU_HEXSTR ...]]
 
 LoRaWAN PHY Payload parser. The input must be hex strings. You can use stdin
@@ -46,7 +46,7 @@ optional arguments:
                         specify NwkSKey(v1.0.x). (default: None)
   --appskey APPSKEY, --AppSKey APPSKEY
                         specify AppSKey. (default: None)
-  --from-file FROM_FILE
+  --input-file INPUT_FILE
                         specify a file or stdin to read the messages.
                         (default: None)
   --upper-fcnt UPPER_FCNT
@@ -55,6 +55,9 @@ optional arguments:
   --lorawan-version VERSION
                         specify the version of LoRaWAN; 1.0, 1.0.3, or 1.1
                         (default: 1.0.3)
+  --string-type STRING_TYPE
+                        specify the type of string of phy_pdu, either hexstr
+                        or base64. (default: hexstr)
   -v                    enable verbose mode. (default: False)
   -d                    increase debug mode. (default: [])
 ```

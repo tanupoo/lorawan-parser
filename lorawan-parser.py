@@ -29,7 +29,7 @@ ap.add_argument("--nwkskey", "--NwkSKey", action="store", dest="nwkskey",
 ap.add_argument("--appskey", "--AppSKey", action="store", dest="appskey",
                 help="specify AppSKey.")
 #
-ap.add_argument("--from-file", action="store", dest="from_file",
+ap.add_argument("--input-file", action="store", dest="input_file",
                 help="specify a file or stdin to read the messages.")
 #
 ap.add_argument("--upper-fcnt", action="store", dest="upper_fcnt",
@@ -84,11 +84,11 @@ if opt.join_r is not None and opt.join_a is not None:
     else:
         raise ValueError("ERROR: appkey is required to produce NwkSKey and AppSKey.")
 
-if opt.from_file:
-    if opt.from_file in ["-", "stdin"]:
+if opt.input_file:
+    if opt.input_file in ["-", "stdin"]:
         fd = sys.stdin
     else:
-        fd = open(opt.from_file)
+        fd = open(opt.input_file)
     for line in fd:
         parse_phy_pdu(a2b_hex(line, string_type=opt.string_type),
                       nwkskey=nwkskey, appskey=appskey, appkey=appkey,
