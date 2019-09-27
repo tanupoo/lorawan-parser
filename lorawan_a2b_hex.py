@@ -39,5 +39,3 @@ if __name__ == "__main__":
     d = "IM7jjKOUkVEf405egXcnkBPNCoKH6CIUgJgY5Op90XmQ"
     print("*  ", d)
     print(" =>", a2b_hex(d, string_type="base64").hex())
-            
-
