@@ -92,13 +92,18 @@ if opt.input_file:
         fd = sys.stdin
     else:
         fd = open(opt.input_file)
+    nb_line = 0
     for line in fd:
+        line = line.strip()
+        nb_line += 1
+        if opt.verbose:
+            print("## input {}: [{}]".format(nb_line, line))
         parse_phy_pdu(a2b_hex(line, string_type=opt.string_type),
                       nwkskey=nwkskey, appskey=appskey, appkey=appkey,
                       version=opt.version, upper_fcnt=a2b_hex(opt.upper_fcnt),
                       option=opt)
         if opt.separator is not None:
-            sys.stdout.write(opt.separator + "\n")
+            print(opt.separator)
 else:
     if len(opt.phy_pdu) == 0:
         ap.print_help()
