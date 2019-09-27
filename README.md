@@ -261,3 +261,11 @@ you can see a short description of each command like below:
   MIC in frame : x 7c4371b7 [x b771437c]
   MIC Derived  : x 7c4371b7
 ```
+
+The --separator option allows to add another separator
+when you want to decode the multiple frames.
+Normally, the separator is a single newline.
+If you want to add one more newline, the command line is like below:
+
+    lorawan-parser.py --input-file frame.log --separator ""
+

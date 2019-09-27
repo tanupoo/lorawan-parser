@@ -46,6 +46,9 @@ ap.add_argument("--string-type", action="store", dest="string_type",
                 default="hexstr",
                 help="""specify the type of string of phy_pdu,
                 either hexstr or base64.""")
+ap.add_argument("--separator", action="store", dest="separator",
+                help="""specify a separator between the output to decode
+                multiple frames at once.""")
 ap.add_argument("-v", action="store_true", dest="verbose",
                 help="enable verbose mode.")
 ap.add_argument("-d", action="append_const", dest="_f_debug", default=[],
@@ -94,6 +97,8 @@ if opt.input_file:
                       nwkskey=nwkskey, appskey=appskey, appkey=appkey,
                       version=opt.version, upper_fcnt=a2b_hex(opt.upper_fcnt),
                       option=opt)
+        if opt.separator is not None:
+            sys.stdout.write(opt.separator + "\n")
 else:
     if len(opt.phy_pdu) == 0:
         ap.print_help()
