@@ -19,7 +19,8 @@ def a2b_hex(buf, string_type="hexstr"):
         # others
         hexstr = re.sub(r"([,\s\n]|0x)", "", buf)
     if len(hexstr)%2 == 1:
-        raise ValueError("the length of hexstr is not even.")
+        raise ValueError("the length of hexstr is not even. len={} hexstr={}"
+                         .format(len(hexstr), hexstr))
     return bytearray.fromhex(hexstr)
 
 if __name__ == "__main__":
