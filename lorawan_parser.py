@@ -80,7 +80,7 @@ def x2int(v):
         v: bit string, bytes, bytearray
     bytes, bytearray must be in little endian.
     """
-    if isinstance(v, str) and set(v) == {"0","1"}:
+    if isinstance(v, str) and set(v) in [{"0"},{"1"},{"0","1"}]:
         return int(v, 2)
     elif isinstance(v, (bytes, bytearray)):
         return int.from_bytes(v, "little")
