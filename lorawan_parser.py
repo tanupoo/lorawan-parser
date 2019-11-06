@@ -1288,9 +1288,13 @@ def parse_dlsettings(dlsets):
             "rx2datarate": dlsets_rx2dr_i,
             }
 
-def parse_cflist(cflist_x, region):
+def parse_cflist(cflist_x, region, version):
     if region == "AS923":
-        nb_start = 2 # AS923
+        # AS923
+        if version != "1.0":
+            nb_start = 3
+        else:
+            nb_start = 2
     elif region == "EU868":
         nb_start = 3 # EU868
     elif region == "US920":
@@ -1367,15 +1371,17 @@ def parse_join_accept(phy_pdu, appkey=None, version="1.0.3", region="AS923"):
             "netid": netid_o["netid"],
             "nwkid": netid_o["nwkid"],
             "devaddr": devaddr,
-            "dlsettings": dlsets_o["dlsettings"],
-            "rx1droffset": dlsets_o["rx1droffset"],
-            "rx2datarate": dlsets_o["rx2datarate"],
             "rxdelay": rxdelay_i,
             "mic_explicit": mic_explicit,
             }
+    if version != "1.0":
+        ret_o.update({
+                "dlsettings": dlsets_o["dlsettings"],
+                "rx1droffset": dlsets_o["rx1droffset"],
+                "rx2datarate": dlsets_o["rx2datarate"]})
     # parse cflist if needed.
     if len(phy_pdu) == 33:
-        cflist_o = parse_cflist(payload[12:28], region)
+        cflist_o = parse_cflist(payload[12:28], region, version=version)
         ret_o.update({"cflist": cflist_o})
     # MIC calculation
     if appkey is not None:
