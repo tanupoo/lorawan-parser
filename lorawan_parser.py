@@ -389,7 +389,7 @@ maximum power density constraints
 for base stations in some regions and to balance the
 uplink and downlink radio link margins.
 """)
-    print_v("RX2DataRate", RX2DataRate_i, forx(RX2DataRate_b,"bin"), indent=4)
+    print_v("RX2DataRate", RX2DataRate_i, formx(RX2DataRate_b,"bin"), indent=4)
     print_detail("""
 The RX2DataRate field defines the data rate of a downlink using the second
 receive window following the same convention as the
