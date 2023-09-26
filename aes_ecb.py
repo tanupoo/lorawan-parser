@@ -27,7 +27,7 @@ class AES_ECB():
         """
         blk_list = []
         for i in range(0,len(enc_data),16):
-            blk_list.append(self.aes_ecb.decrypt(data[i:i+16]))
+            blk_list.append(self.aes_ecb.decrypt(enc_data[i:i+16]))
         return b"".join(blk_list)
 
 def aes128_encrypt(key, plain_data):
